@@ -31,7 +31,7 @@ const routes = [
   },
 ];
 export const logroutes = () =>{
-  routes.forEach(route => console.log(`http://localhost:5173${route.path}`))
+  routes.forEach(route => console.log(`http://localhost:5173/#${route.path}`))
 }
 
 export default routes;
