@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useNavbarContext } from "../../context/NavbarContext";
+import { useStore } from "../../context/store";
 function Navigation() {
-  const { showNavbar } = useNavbarContext();
+  const { showNavbar } = useStore();
 
   const items = [
     {

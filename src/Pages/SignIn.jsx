@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
-import '../index.css'; // import the Tailwind CSS file
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import "../index.css"; // import the Tailwind CSS file
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useStore } from "../context/store";
 
 const SignIn = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
   });
+  const { setUser } = useStore();
 
   const handleSubmit = async (e) => {
-const BE_URL = import.meta.env.VITE_BE_PORT;
-console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL)
+    const BE_URL = import.meta.env.VITE_BE_PORT;
+    console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL);
 
     e.preventDefault();
     try {
@@ -23,54 +25,72 @@ console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL)
           withCredentials: true,
         }
       );
-      console.log(res.data.user);
-      localStorage.setItem("token", res.data.token);
-      navigate('/')
-      
+      setUser(res.data.user);
+      console.log(res.data)
+      navigate("/");
     } catch (error) {
       console.log(error);
-      // if (error.response.data.error) {
-        // setMessage(
-        //   error.response.data.error.errors.map((err) => err.msg).join(" - ")
-        // );
-      //   console.log(error.response.data.error);
-      // }
     }
   };
   return (
     <div className="flex h-screen bg-gray-200">
       {/* Left Side - Image */}
-      <div className="w-1/2 bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/id/237/1000/1000')" }}></div>
-      
+      <div
+        className="w-1/2 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('https://picsum.photos/id/237/1000/1000')",
+        }}
+      ></div>
+
       {/* Right Side - Login Form */}
       <div className="flex items-center justify-center w-1/2 bg-white">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold mb-6">Login</h1>
-          
+
           {/* Email Input */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
-            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="email" type="email" placeholder="Enter your email"
-            onChange={(e) =>
-              setUserLogin({ ...userLogin, email: e.target.value })}
-             />
+            <input
+              className="border rounded-md py-2 px-3 text-gray-700 w-full"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              onChange={(e) =>
+                setUserLogin({ ...userLogin, email: e.target.value })
+              }
+            />
           </div>
-          
+
           {/* Password Input */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
-            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="password" type="password" placeholder="Enter your password"
-            onChange={(e) =>
-              setUserLogin({ ...userLogin, password: e.target.value })} />
+            <input
+              className="border rounded-md py-2 px-3 text-gray-700 w-full"
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) =>
+                setUserLogin({ ...userLogin, password: e.target.value })
+              }
+            />
           </div>
-          
+
           {/* Login Button */}
           <div className="mb-6">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleSubmit}
+            >
               Login
             </button>
           </div>
@@ -78,6 +98,6 @@ console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL)
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;
