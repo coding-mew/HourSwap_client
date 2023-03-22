@@ -8,15 +8,8 @@ export function useStore() {
 }
 
 export function StoreProvider({ children }) {
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    profilePic: "https://picsum.photos/200",
-    hourTokens: "",
-    isLoggedIn: false,
-  });
+  const [user, setUser] = useState(localStorage.getItem("user") || {});
+  console.log(user)
   const [showNavbar, setShowNavbar] = useState(true);
 
   const validateUser = async () => {
@@ -33,7 +26,7 @@ export function StoreProvider({ children }) {
       );
 
       console.log("i am result log from store", result);
-      // setUser({ ...user, isLoggedIn: true })
+      // setUser({ ...user })
     } catch (error) {
       console.log("i am error from store", error);
     }

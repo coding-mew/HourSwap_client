@@ -25,6 +25,7 @@ const SignIn = () => {
           withCredentials: true,
         }
       );
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       setUser(res.data.user);
       console.log(res.data)
       navigate("/");
