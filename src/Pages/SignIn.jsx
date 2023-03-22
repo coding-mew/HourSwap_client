@@ -14,8 +14,6 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     const BE_URL = import.meta.env.VITE_BE_PORT;
-    console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL);
-
     e.preventDefault();
     try {
       const res = await axios.post(

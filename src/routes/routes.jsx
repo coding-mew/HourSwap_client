@@ -12,18 +12,18 @@ const routes = [
     id: 1,
   },
   {
-    path: "/signIn",
+    path: "/signin",
     element: <SignIn />,
     id: 2,
   },
   {
-    path: "/signUp",
+    path: "/signup",
     element: <SignUp/>,
     id: 3,
   },
   { path: "*", element: <NotFound />, id: 4 },
   { path: "/", element: <Navigate to="/" />, id: 5 },
-  // { path: "/hourSwap/", element: <Navigate to="/home" />, id: 6 },
+  { path: "/createtask", element: <Navigate to="/createtask" />, id: 6 },
   {
     path: "/impressum",
     element: <Impressum />,
