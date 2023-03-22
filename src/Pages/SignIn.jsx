@@ -1,7 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../index.css'; // import the Tailwind CSS file
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const [userLogin, setUserLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+const BE_URL = import.meta.env.VITE_BE_PORT;
+console.log("🚀 ~ file: SignIn.jsx:15 ~ handleSubmit ~ BE_URL:", BE_URL)
+
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `http://localhost:${BE_URL}/user/login`,
+        userLogin,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res.data.user);
+      localStorage.setItem("token", res.data.token);
+      navigate('/')
+      
+    } catch (error) {
+      console.log(error);
+      // if (error.response.data.error) {
+        // setMessage(
+        //   error.response.data.error.errors.map((err) => err.msg).join(" - ")
+        // );
+      //   console.log(error.response.data.error);
+      // }
+    }
+  };
   return (
     <div className="flex h-screen bg-gray-200">
       {/* Left Side - Image */}
@@ -17,7 +52,10 @@ const SignIn = () => {
             <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
               Email
             </label>
-            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="email" type="email" placeholder="Enter your email" />
+            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="email" type="email" placeholder="Enter your email"
+            onChange={(e) =>
+              setUserLogin({ ...userLogin, email: e.target.value })}
+             />
           </div>
           
           {/* Password Input */}
@@ -25,12 +63,14 @@ const SignIn = () => {
             <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
               Password
             </label>
-            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="password" type="password" placeholder="Enter your password" />
+            <input className="border rounded-md py-2 px-3 text-gray-700 w-full" id="password" type="password" placeholder="Enter your password"
+            onChange={(e) =>
+              setUserLogin({ ...userLogin, password: e.target.value })} />
           </div>
           
           {/* Login Button */}
           <div className="mb-6">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
               Login
             </button>
           </div>

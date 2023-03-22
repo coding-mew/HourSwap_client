@@ -4,11 +4,11 @@ import axios from 'axios';
 const UserDashboard = () => {
   const [userData, setUserData] = useState(null);
   
-  useEffect(() => {
-    axios.get('/api/userdata')
-      .then(response => setUserData(response.data))
-      .catch(error => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/api/userdata')
+  //     .then(response => setUserData(response.data))
+  //     .catch(error => console.log(error));
+  // }, []);
 
   return (
     <div className="flex flex-col items-center">

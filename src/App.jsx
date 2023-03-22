@@ -1,7 +1,8 @@
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import { GameContextProvider } from "./global/Context";
+import { NavbarProvider } from "./context/NavbarContext";
+import { AuthProvider } from "./context/authContext";
 import Dashboard from "./Pages/Dashboard";
 import Impressum from "./Pages/Impressum";
 import NotFound from "./Pages/NotFound";
@@ -14,7 +15,8 @@ function App() {
   return (
     <>
       <HashRouter>
-        <GameContextProvider>
+        <AuthProvider>
+          <NavbarProvider>
           <Layout>
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -24,7 +26,8 @@ function App() {
               <Route path="/signUp" element={<SignUp/>} />
             </Routes>
           </Layout>
-        </GameContextProvider>
+          </NavbarProvider>
+        </AuthProvider>
       </HashRouter>
       <div className="App"></div>
     </>
