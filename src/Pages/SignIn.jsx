@@ -26,7 +26,10 @@ const SignIn = () => {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setUser(res.data.user);
       console.log(res.data)
-      navigate("/");
+      if (localStorage.getItem('user')) {
+        console.log("user in localstorage")
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }

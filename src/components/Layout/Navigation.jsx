@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useStore } from "../../context/store";
+import LogoutButton from "../LogoutButton";
 function Navigation() {
   const { showNavbar } = useStore();
 
@@ -34,11 +35,6 @@ function Navigation() {
       name: "Not Found",
       to: "*",
       id: 5,
-    },
-    {
-      name: "Logout",
-      to: "/logout",
-      id: 6,
     }
   ];
   return showNavbar ? (
@@ -91,6 +87,7 @@ function Navigation() {
                     </NavLink>
                   </li>
                 ))}
+                <LogoutButton />
               </ul>
             </nav>
           </div>

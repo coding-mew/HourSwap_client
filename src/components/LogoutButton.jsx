@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { authenticateToken } from "../global/authenticateToken";
+
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -22,8 +22,8 @@ const LogoutButton = () => {
           withCredentials: true,
         }
       );
-
       if (response.status === 200) {
+        console.log("🚀 ~ file: Logout.jsx:26 ~ handleLogout ~ response:", response)
         // clear the local storage
         localStorage.clear();
 

@@ -2,10 +2,12 @@ import React from "react";
 import { HashRouter, Route, Routes, useNavigate, useNavigation } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { StoreProvider } from "./context/store";
-import {routes} from "./routes/routes";
+
 import { Navigate } from "react-router-dom";
+import { allRoutes } from "./routes/routes";
 
 function App() {
+  const {routes} = allRoutes();
   return (
     <>
       <HashRouter>
@@ -13,6 +15,7 @@ function App() {
             <Layout>
               <Routes>
               {routes.map((route) => {
+                console.log(route.path, route.isProtected)
           return route.isProtected ? (
             <Route
               key={route.id}
@@ -25,7 +28,6 @@ function App() {
         })}
               </Routes>
             </Layout>
-
         </StoreProvider>
       </HashRouter>
       <div className="App"></div>
