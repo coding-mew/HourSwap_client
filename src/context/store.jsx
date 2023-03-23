@@ -26,7 +26,6 @@ export function StoreProvider({ children }) {
       );
 
       console.log("i am result log from store", result);
-      // setUser({ ...user })
     } catch (error) {
       console.log("i am error from store", error);
     }

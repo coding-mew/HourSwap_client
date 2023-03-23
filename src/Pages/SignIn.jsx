@@ -17,7 +17,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:${BE_URL}/user/login`,
+        `${BE_URL}/user/login`,
         userLogin,
         {
           withCredentials: true,

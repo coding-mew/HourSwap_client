@@ -25,7 +25,7 @@ const SignUp = () => {
     e.preventDefault();
     const BE_URL = import.meta.env.VITE_BE_PORT;
     try {
-      const res = await axios.post(`http://localhost:${BE_URL}/user/register`, formData);
+      const res = await axios.post(`${BE_URL}/user/register`, formData);
       console.log(res.data);
       navigate("/signIn")
     } catch (err) {

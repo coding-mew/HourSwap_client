@@ -35,6 +35,11 @@ function Navigation() {
       to: "*",
       id: 5,
     },
+    {
+      name: "Logout",
+      to: "/logout",
+      id: 6,
+    }
   ];
   return showNavbar ? (
     <header>

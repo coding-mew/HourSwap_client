@@ -1,17 +1,22 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Modal from "../components/Layout/Modal";
+import { authenticateToken } from "../global/authenticateToken";
 
 const CreateTask = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    topic: '',
-    type: '',
-    description: '',
+    topic: "",
+    type: "",
+    description: "",
     valueToken: 0,
-    created_by: '',
+    created_by: "",
   });
 
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false); 
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,13 +25,16 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const BE_URL = import.meta.env.VITE_BE_PORT;
-      const res = await axios.post(`http://localhost:${BE_URL}/tasks/createTask`, formData,
-      {
-        withCredentials: true,
-      });
-      // navigate(`/tasks/${res.data._id}`);
-      console.log("task saved", res.data)
+      const BE_URL = import.meta.env.VITE_BE_PORT;
+      const res = await axios.post(
+        `${BE_URL}/tasks/createTask`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("task saved", res.data);
+      setShowModal(true); // display modal upon success
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +69,14 @@ const CreateTask = () => {
                 <option value="" disabled>
                   Select a topic
                 </option>
-                {['cleaning', 'cooking', 'gardening', 'teaching', 'transportation', 'other'].map((option) => (
+                {[
+                  "cleaning",
+                  "cooking",
+                  "gardening",
+                  "teaching",
+                  "transportation",
+                  "other",
+                ].map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
@@ -87,7 +102,7 @@ const CreateTask = () => {
                 <option value="" disabled>
                   Select a type
                 </option>
-                {['request', 'offer'].map((option) => (
+                {["request", "offer"].map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
@@ -110,43 +125,65 @@ const CreateTask = () => {
                 required
                 rows="3"
                 className="mt-1 block w-full shadow-sm focus
-                outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                />
-              </div>
-  
-              <div>
-                <label
-                  htmlFor="valueToken"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Value Token
-                </label>
-                <input
-                  id="valueToken"
-                  name="valueToken"
-                  type="number"
-                  onChange={handleChange}
-                  value={formData.valueToken}
-                  min="0"
-                  max="10"
-                  required
-                  className="mt-1 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Create
-                </button>
-              </div>
-            </form>
-          </div>
+      outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="valueToken"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Value Token
+              </label>
+              <input
+                id="valueToken"
+                name="valueToken"
+                type="number"
+                onChange={handleChange}
+                value={formData.valueToken}
+                min="0"
+                max="10"
+                className="mt-1 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              />
+            </div>
+
+            <div className="hidden">
+              <input
+                type="text"
+                name="created_by"
+                value={formData.created_by}
+                readOnly
+              />
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Create
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    );
-  };
-  
-  export default CreateTask;
-  
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <div className="bg-white rounded-lg px-4 py-6">
+            <h3 className="text-lg font-medium mb-4">
+              Task created successfully!
+            </h3>
+            <p>Topic: {formData.topic}</p>
+            <p>Type: {formData.type}</p>
+            <p>Description: {formData.description}</p>
+            <p>Value Token: {formData.valueToken}</p>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default CreateTask;

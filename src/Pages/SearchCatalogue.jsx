@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { authenticateToken } from '../global/authenticateToken';
 
 const SearchCatalogue = () => {
+  const navigate = useNavigate();
+
+
   const [searchParams, setSearchParams] = useState({
     topic: '',
     type: '',
@@ -18,7 +23,7 @@ const SearchCatalogue = () => {
   
     try {
       const response = await axios.get(
-        `http://localhost:${BE_URL}/tasks/searchcatalogue?topic=${searchParams.topic}&type=${searchParams.type}`,
+        `${BE_URL}/tasks/searchcatalogue?topic=${searchParams.topic}&type=${searchParams.type}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

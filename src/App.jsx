@@ -1,32 +1,28 @@
 import React from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes, useNavigate, useNavigation } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { StoreProvider } from "./context/store";
-import CreateTask from "./Pages/CreateTask";
-import Dashboard from "./Pages/Dashboard";
-import Impressum from "./Pages/Impressum";
-import NotFound from "./Pages/NotFound";
-import SearchCatalogue from "./Pages/SearchCatalogue";
-import SignIn from "./Pages/SignIn";
-import SignUp from "./Pages/SignUp";
+import {routes} from "./routes/routes";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (
     <>
       <HashRouter>
         <StoreProvider>
-      
             <Layout>
               <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/impressum" element={<Impressum />} />
-                <Route path="/*" element={<NotFound />} />
-                <Route path="/signIn" element={<SignIn />} />
-                <Route path="/signUp" element={<SignUp />} />
-                <Route path="/createtask" element={<CreateTask />} />
-                <Route path="/searchcatalogue" element={<SearchCatalogue/>} />
-
-
+              {routes.map((route) => {
+          return route.isProtected ? (
+            <Route
+              key={route.id}
+              path={route.path}
+              element={<Navigate to={route.redirectPath} replace={true} />}
+            />
+          ) : (
+            <Route key={route.id} path={route.path} element={route.element} />
+          );
+        })}
               </Routes>
             </Layout>
 
