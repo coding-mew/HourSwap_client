@@ -24,10 +24,13 @@ const routes = [
   { path: "*", element: <NotFound />, id: 4 },
   { path: "/", element: <Navigate to="/" />, id: 5 },
   { path: "/createtask", element: <Navigate to="/createtask" />, id: 6 },
+  { path: "/searchcatalogue", element: <Navigate to="/searchcatalogue" />, id: 7 },
+  // { path: "/createtask", element: <Navigate to="/createtask" />, id: 6 },
+
   {
     path: "/impressum",
     element: <Impressum />,
-    id: 7,
+    id: 8,
   },
 ];
 export const logroutes = () =>{

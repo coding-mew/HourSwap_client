@@ -12,24 +12,24 @@ function Navigation() {
     },
     {
       name: "SignIn",
-      to: "/signIn",
+      to: "/signin",
       id: 1,
     },
     {
       name: "SignUp",
-      to: "/signUp",
+      to: "/signup",
       id: 2,
     },
-    // {
-    //   name: "Final",
-    //   to: "/final_score",
-    //   id: 3,
-    // },
-    // {
-    //   name: "Saved",
-    //   to: "/saved_questions",
-    //   id: 4,
-    // },
+    {
+      name: "Create Task",
+      to: "/createtask",
+      id: 3,
+    },
+    {
+      name: "Search Catalogue",
+      to: "/searchcatalogue",
+      id: 4,
+    },
     {
       name: "Not Found",
       to: "*",
@@ -42,9 +42,9 @@ function Navigation() {
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" className="flex items-center">
             <img
-              src="../assets/pictures/hourglass.svg"
+              src="src/assets/pictures/hourglass.svg"
               className="h-6 mr-3 sm:h-9"
-              alt="Flowbite Logo"
+              alt="HourSwap Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               HourSwap

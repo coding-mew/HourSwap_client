@@ -1,6 +1,7 @@
 
 import { useStore } from '../context/store';
 import {useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
 
 const UserDashboard = () => {
   const {user} = useStore();
@@ -8,10 +9,17 @@ console.log(user)
  const userData = JSON.parse(localStorage.getItem('user'))
  console.log(userData)
   const navigate = useNavigate();
+// useEffect(() => {
+//   first
+
+//   return () => {
+//     second
+//   }
+// }, [third])
 
   return (
     <div className="flex flex-col items-center">
-      {user && (
+      {user.firstName !== "" && (
         <>
           <img src={userData.profilePicture} alt="Profile" className="w-20 h-20 rounded-full mb-4" />
           <h2 className="text-2xl font-bold">Hello {userData.firstName}</h2>

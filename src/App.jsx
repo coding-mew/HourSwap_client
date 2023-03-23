@@ -6,6 +6,7 @@ import CreateTask from "./Pages/CreateTask";
 import Dashboard from "./Pages/Dashboard";
 import Impressum from "./Pages/Impressum";
 import NotFound from "./Pages/NotFound";
+import SearchCatalogue from "./Pages/SearchCatalogue";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 
@@ -23,6 +24,8 @@ function App() {
                 <Route path="/signIn" element={<SignIn />} />
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/createtask" element={<CreateTask />} />
+                <Route path="/searchcatalogue" element={<SearchCatalogue/>} />
+
 
               </Routes>
             </Layout>
