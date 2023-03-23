@@ -6,6 +6,8 @@ import NotFound from "../pages/NotFound";
 import SearchCatalogue from "../Pages/SearchCatalogue";
 import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
+import { useStore } from "../context/store";
+
 
 
 export const paths = {
@@ -19,10 +21,19 @@ export const paths = {
   signUp: "/signup",
 };
 
-const isLoggedIn = true
 
 
-export const allRoutes = () =>{
+
+export const AllRoutes = () =>{
+
+  const {user} = useStore();
+console.log(useStore)
+  const userArray = Object.values(user)
+  console.log("🚀 ~ file: routes.jsx:32 ~ AllRoutes ~ userArray:", userArray)
+  const isLoggedIn = userArray.length>0;
+  // const isLoggedIn = user.isEmpty()
+  console.log(isLoggedIn)
+
   const routes = [
     {
       path: paths.dashboard,
@@ -41,20 +52,20 @@ export const allRoutes = () =>{
    {
       path: paths.impressum,
       element: <Impressum />,
-      isProtected: false,
+      isProtected: isLoggedIn,
       redirectPath: null,
       id: paths.impressum,
    },
   {
       path: paths.marketplace,
       element: <Marketplace/>,
-      isProtected: !isLoggedIn,
+      isProtected: isLoggedIn,
       redirectPath: paths.signIn,
       id: paths.marketplace,
    },{
       path: paths.notFound,
       element: <NotFound />,
-      isProtected: false,
+      isProtected: isLoggedIn,
       redirectPath: null,
       id: paths.notFound,
   
@@ -68,14 +79,14 @@ export const allRoutes = () =>{
    },{
       path: paths.signIn,
       element: <SignIn />,
-      isProtected: false,
+      isProtected: isLoggedIn,
       redirectPath: null,
       id: paths.signIn,
   
    },{
       path: paths.signUp,
       element: <SignUp/>,
-      isProtected: false,
+      isProtected: isLoggedIn,
       redirectPath: null,
       id: paths.signUp,
    }
@@ -90,4 +101,4 @@ const logroutes = () => {
   }
 }
 
-export default allRoutes;
+export default AllRoutes;

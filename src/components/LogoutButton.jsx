@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../context/store";
 
 
 const LogoutButton = () => {
+  const {setUser} = useStore();
   const navigate = useNavigate();
   const handleLogout = async () => {
     const BE_URL = import.meta.env.VITE_BE_PORT;
@@ -27,14 +29,14 @@ const LogoutButton = () => {
         // clear the local storage
         localStorage.clear();
 
-        // redirect the user to the login page
+        setUser({})
+        
         navigate("/signin");
       }
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <button
       onClick={handleLogout}

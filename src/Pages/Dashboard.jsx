@@ -1,19 +1,11 @@
-import { useStore } from "../context/store";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { authenticateToken } from "../global/authenticateToken";
+import { useStore } from "../context/store";
 
 const UserDashboard = () => {
   const { user } = useStore();
   console.log(user)
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const isLoggedIn = authenticateToken();
-  //   console.log(isLoggedIn);
-  //   if (isLoggedIn !== true) {
-  //     navigate("/signin");
-  //   }
-  // }, []);
+
   return (
     <div className="flex flex-col items-center">
           <img

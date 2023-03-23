@@ -9,14 +9,12 @@ export function useStore() {
 
 export function StoreProvider({ children }) {
   const [user, setUser] = useState(localStorage.getItem("user") || {});
-  console.log(user)
+  console.log("FROM CONTECT", user)
   const [showNavbar, setShowNavbar] = useState(true);
 
   const validateUser = async () => {
     try {
       const BE_URL = import.meta.env.VITE_BE_PORT;
-      console.log("🚀 ~ file: Store.jsx:23 ~ validateUser ~ BE_URL:", BE_URL);
-
       const result = await axios.post(
         `http://localhost:${BE_URL}/user/validate`,
         null,
@@ -30,7 +28,6 @@ export function StoreProvider({ children }) {
       console.log("i am error from store", error);
     }
   };
-
   return (
     <StoreContext.Provider
       value={{ user, setUser, validateUser, showNavbar, setShowNavbar }}
