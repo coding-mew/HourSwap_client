@@ -20,11 +20,20 @@ const UserDashboard = () => {
           <div className="flex space-x-4">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-              // onClick={navigate("/createtask")}
+              onClick={(event) => {
+                // event.preventDefault();
+                console.log("trying to navigate")
+                navigate("/createtask");
+              }}
             >
               Create A Task
             </button>
-            <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+            <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                onClick={(event) => {
+                  // event.preventDefault();
+                  navigate("/searchcatalogue");
+                }}
+              >
               Search Catalogue
             </button>
           </div>

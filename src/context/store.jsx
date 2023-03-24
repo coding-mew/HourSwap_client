@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import React, { useContext, useState } from "react";
 
 const StoreContext = React.createContext();
 
@@ -9,7 +9,6 @@ export function useStore() {
 
 export function StoreProvider({ children }) {
   const [user, setUser] = useState(localStorage.getItem("user") || {});
-  console.log("FROM CONTECT", user)
   const [showNavbar, setShowNavbar] = useState(true);
 
   const validateUser = async () => {

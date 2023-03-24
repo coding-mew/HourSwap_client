@@ -39,9 +39,9 @@ function Navigation() {
   ];
   return showNavbar ? (
     <header>
-      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
-        <div className="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="#" className="flex items-center">
+    <nav className="bg-emerald-700 backdrop-blur-lg bg-opacity-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
+  <div className="container flex flex-wrap items-center justify-between mx-auto">
+    <a href="#" className="flex items-center">
             <img
               src="src/assets/pictures/hourglass.svg"
               className="h-6 mr-3 sm:h-9"

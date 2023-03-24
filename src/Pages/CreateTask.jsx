@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Layout/Modal";
-import { authenticateToken } from "../global/authenticateToken";
 
 const CreateTask = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     topic: "",

@@ -43,7 +43,7 @@ const SearchCatalogue = () => {
     );
 
     try {
-      const response = await axios.get(`${BE_URL}/user/${userId}/getContactinfo`, {
+      const response = await axios.get(`${BE_URL}/users/${userId}/contact`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

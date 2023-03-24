@@ -15,7 +15,7 @@ export const paths = {
   createTask: "/createtask",
   impressum: "/impressum",
   marketplace: "/marketplace",
-  notFound: "/notfound",
+  notFound: "/*",
   searchCatalogue: "/searchcatalogue",
   signIn: "/signin",
   signUp: "/signup",
@@ -27,12 +27,12 @@ export const paths = {
 export const AllRoutes = () =>{
 
   const {user} = useStore();
-console.log(useStore)
   const userArray = Object.values(user)
-  console.log("🚀 ~ file: routes.jsx:32 ~ AllRoutes ~ userArray:", userArray)
+
   const isLoggedIn = userArray.length>0;
-  // const isLoggedIn = user.isEmpty()
-  console.log(isLoggedIn)
+
+// const isLoggedIn = false
+
 
   const routes = [
     {
@@ -48,18 +48,18 @@ console.log(useStore)
       isProtected: !isLoggedIn,
       redirectPath: paths.signIn,
       id: paths.createTask,
-   },
-   {
-      path: paths.impressum,
-      element: <Impressum />,
-      isProtected: isLoggedIn,
-      redirectPath: null,
-      id: paths.impressum,
-   },
+   },{
+    path: paths.searchCatalogue,
+    element: <SearchCatalogue />,
+    isProtected: !isLoggedIn,
+    redirectPath: paths.signIn,
+    id: paths.searchCatalogue,
+
+ },
   {
       path: paths.marketplace,
       element: <Marketplace/>,
-      isProtected: isLoggedIn,
+      isProtected: !isLoggedIn,
       redirectPath: paths.signIn,
       id: paths.marketplace,
    },{
@@ -70,26 +70,25 @@ console.log(useStore)
       id: paths.notFound,
   
    },{
-      path: paths.searchCatalogue,
-      element: <SearchCatalogue />,
-      isProtected: !isLoggedIn,
-      redirectPath: paths.signIn,
-      id: paths.searchCatalogue,
-  
-   },{
-      path: paths.signIn,
-      element: <SignIn />,
-      isProtected: isLoggedIn,
-      redirectPath: null,
-      id: paths.signIn,
-  
-   },{
-      path: paths.signUp,
-      element: <SignUp/>,
-      isProtected: isLoggedIn,
-      redirectPath: null,
-      id: paths.signUp,
-   }
+    path: paths.signIn,
+    element: <SignIn />,
+    isProtected: isLoggedIn,
+    redirectPath: null,
+    id: paths.signIn,
+
+ },{
+    path: paths.signUp,
+    element: <SignUp/>,
+    isProtected: isLoggedIn,
+    redirectPath: null,
+    id: paths.signUp,
+ },{
+  path: paths.impressum,
+  element: <Impressum />,
+  isProtected: isLoggedIn,
+  redirectPath: null,
+  id: paths.impressum,
+},
   ];
 const logroutes = () => {
     routes.forEach((route) =>
