@@ -4,44 +4,51 @@ import { useStore } from "../../context/store";
 import LogoutButton from "../LogoutButton";
 function Navigation() {
   const { showNavbar } = useStore();
+  const { isLoggedIn } = useStore();
 
   const items = [
     {
       name: "Dashboard",
       to: "/",
       id: 0,
+      isProtected: !isLoggedIn,
     },
     {
       name: "SignIn",
       to: "/signin",
       id: 1,
+      isProtected: isLoggedIn,
     },
     {
       name: "SignUp",
       to: "/signup",
       id: 2,
+      isProtected: isLoggedIn,
     },
     {
       name: "Create Task",
       to: "/createtask",
       id: 3,
+      isProtected: !isLoggedIn,
     },
     {
       name: "Search Catalogue",
       to: "/searchcatalogue",
       id: 4,
+      isProtected: !isLoggedIn,
     },
     {
       name: "Not Found",
       to: "*",
       id: 5,
-    }
+      isProtected: isLoggedIn,
+    },
   ];
   return showNavbar ? (
     <header>
-    <nav className="bg-emerald-700 backdrop-blur-lg bg-opacity-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
-  <div className="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="#" className="flex items-center">
+      <nav className="bg-emerald-700 backdrop-blur-lg bg-opacity-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
+        <div className="container flex flex-wrap items-center justify-between mx-auto">
+          <a href="#" className="flex items-center">
             <img
               src="src/assets/pictures/hourglass.svg"
               className="h-6 mr-3 sm:h-9"
@@ -76,18 +83,23 @@ function Navigation() {
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <nav className="nav_container">
               <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                {items.map((item) => (
-                  <li key={item.id}>
-                    {" "}
-                    <NavLink
-                      to={item.to}
-                      className="block py-2 pl-3 pr-4 text-green-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                    >
-                      {item.name}
-                    </NavLink>
-                  </li>
-                ))}
-                <LogoutButton />
+                {items.map((item) => {
+                  if (item.isProtected === false) {
+                    return (
+                      <li key={item.id}>
+                        {" "}
+                        <NavLink
+                          to={item.to}
+                          className="block py-2 pl-3 pr-4 text-green-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        >
+                          {item.name}
+                        </NavLink>
+                      </li>
+                    );
+                  }
+                })}
+                
+               {isLoggedIn && <LogoutButton />}
               </ul>
             </nav>
           </div>

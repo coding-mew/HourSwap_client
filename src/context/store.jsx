@@ -10,7 +10,7 @@ export function useStore() {
 export function StoreProvider({ children }) {
   const [user, setUser] = useState(localStorage.getItem("user") || {});
   const [showNavbar, setShowNavbar] = useState(true);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const validateUser = async () => {
     try {
       const BE_URL = import.meta.env.VITE_BE_PORT;
@@ -29,7 +29,7 @@ export function StoreProvider({ children }) {
   };
   return (
     <StoreContext.Provider
-      value={{ user, setUser, validateUser, showNavbar, setShowNavbar }}
+      value={{ user, setUser, validateUser, showNavbar, isLoggedIn, setIsLoggedIn,setShowNavbar }}
     >
       {children}
     </StoreContext.Provider>

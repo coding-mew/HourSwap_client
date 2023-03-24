@@ -15,7 +15,6 @@ export const paths = {
   createTask: "/createtask",
   impressum: "/impressum",
   marketplace: "/marketplace",
-  notFound: "/*",
   searchCatalogue: "/searchcatalogue",
   signIn: "/signin",
   signUp: "/signup",
@@ -25,14 +24,7 @@ export const paths = {
 
 
 export const AllRoutes = () =>{
-
-  const {user} = useStore();
-  const userArray = Object.values(user)
-
-  const isLoggedIn = userArray.length>0;
-
-// const isLoggedIn = false
-
+const {isLoggedIn} = useStore();
 
   const routes = [
     {
@@ -62,13 +54,6 @@ export const AllRoutes = () =>{
       isProtected: !isLoggedIn,
       redirectPath: paths.signIn,
       id: paths.marketplace,
-   },{
-      path: paths.notFound,
-      element: <NotFound />,
-      isProtected: isLoggedIn,
-      redirectPath: null,
-      id: paths.notFound,
-  
    },{
     path: paths.signIn,
     element: <SignIn />,

@@ -10,7 +10,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  const { setUser } = useStore();
+  const { setUser, setIsLoggedIn } = useStore();
 
   const handleSubmit = async (e) => {
     const BE_URL = import.meta.env.VITE_BE_PORT;
@@ -24,6 +24,7 @@ const SignIn = () => {
         }
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      setIsLoggedIn(true)
       setUser(res.data.user);
       console.log(res.data)
       if (localStorage.getItem('user')) {
