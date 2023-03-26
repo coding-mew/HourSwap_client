@@ -38,9 +38,15 @@ function Navigation() {
       isProtected: !isLoggedIn,
     },
     {
+      name: "buyToken",
+      to: "/buytoken",
+      id: 5,
+      isProtected: !isLoggedIn,
+    },
+    {
       name: "Not Found",
       to: "*",
-      id: 5,
+      id: 6,
       isProtected: isLoggedIn,
     },
   ];
