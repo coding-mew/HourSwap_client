@@ -1,17 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function NotFound() {
+const NotFound = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="card" style={{ display: "flex", flexDirection: "column" }}>
-      <div className="notFoundContent"></div>
-      Sorry!
-      <br />
-      The Page you're looking for can not be found
-      <br />
-      <Link to="/"> Go to Homepage</Link>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-4xl font-bold text-gray-900">404</h1>
+      <p className="text-xl text-gray-700">Page not found</p>
+     
+      <button
+        className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded"
+        onClick={() => navigate('/')}
+      >
+        Go to Dashboard
+      </button>
     </div>
   );
-}
+};
 
 export default NotFound;

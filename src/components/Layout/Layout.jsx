@@ -9,7 +9,6 @@ import NotFound from "../../pages/NotFound";
 
 function Layout() {
   const { routes } = AllRoutes();
-  const {isLoggedIn} = useStore()
   return (
     <>
       <Header />
