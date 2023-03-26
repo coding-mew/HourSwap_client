@@ -38,17 +38,16 @@ function Navigation() {
       isProtected: !isLoggedIn,
     },
     {
-      name: "buyToken",
+      name: "Buy Token",
       to: "/buytoken",
       id: 5,
       isProtected: !isLoggedIn,
-    },
-    {
-      name: "Not Found",
-      to: "*",
+    },{
+      name: "Send Token",
+      to: "/sendtoken",
       id: 6,
-      isProtected: isLoggedIn,
-    },
+      isProtected: !isLoggedIn,
+    }
   ];
   return showNavbar ? (
     <header>

@@ -13,7 +13,7 @@ const UserDashboard = () => {
         alt="Profile"
         className="w-20 h-20 rounded-full mb-4"
       />
-      <h2 className="text-2xl font-bold">Hello {user.firstName}</h2>
+      <h2 className="text-2xl font-bold">Hello {user.firstName} {user.lastName}</h2>
       <p className="text-lg mb-4">
         You currently own {user.hourTokens} Hour Tokens
       </p>
