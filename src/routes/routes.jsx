@@ -9,6 +9,7 @@ import SignUp from "../Pages/SignUp";
 import { useStore } from "../context/store";
 import BuyToken from "../Pages/BuyToken";
 import SendToken from "../Pages/SendToken";
+import ActiveTasksForActiveUser from "../Pages/ActiveTasksForUser";
 
 
 
@@ -22,6 +23,7 @@ export const paths = {
   signUp: "/signup",
   buyToken: "/buytoken",
   sendToken: "/sendtoken",
+  getTasksforUser: "/gettasksforuser",
 };
 
 
@@ -40,7 +42,13 @@ const {isLoggedIn} = useStore();
       element: <SendToken />,
       isProtected: !isLoggedIn,
       redirectPath: paths.signIn,
+    },{
+      path: paths.getActiveTasks,
+      element: <ActiveTasksForActiveUser />,
+      isProtected: !isLoggedIn,
+      redirectPath: paths.signIn,
     },
+
     {
       path: paths.buyToken,
       element: <BuyToken />,

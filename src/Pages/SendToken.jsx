@@ -21,12 +21,12 @@ const SendToken = () => {
           /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
           '$1'
         );
-      const response = await axios.post(
-        `${BE_URL}/transactions/createtransaction`,
-        { recipient: recipientId, amount, sender: senderId },
-        { headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true, }
-      );
+        const response = await axios.post(
+          `${BE_URL}/transactions/createtransaction`,
+          { recipientId, amount, hourTokens: user.hourTokens }, 
+          { headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true, }
+        );
       console.log(response.data.msg)
       setSuccess(response.data.msg);
     } catch (error) {
