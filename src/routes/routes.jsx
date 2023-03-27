@@ -25,8 +25,6 @@ export const paths = {
 };
 
 
-
-
 export const AllRoutes = () =>{
 const {isLoggedIn} = useStore();
 

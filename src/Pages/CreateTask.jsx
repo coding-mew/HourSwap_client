@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "../components/Layout/Modal";
+import Modal from "../components/Modal";
 
 const CreateTask = () => {
   // const navigate = useNavigate();

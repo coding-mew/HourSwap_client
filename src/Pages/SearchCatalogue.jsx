@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MyChatComponent } from '../components/Layout/Chat';
 
 const SearchCatalogue = () => {
   const navigate = useNavigate();
@@ -50,8 +51,8 @@ const SearchCatalogue = () => {
         withCredentials: true,
       });
 
-      // Display the contact information to the user
-      alert(`Contact ${response.data.email} to apply for this task`);
+      // alert(`Please contact ${response.data.firstName} ${response.data.lastName} ${response.data.email} to apply for this task`);
+      <MyChatComponent userId={response.data.userId} />
     } catch (error) {
       console.error(error);
     }

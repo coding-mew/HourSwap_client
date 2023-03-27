@@ -1,12 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useStore } from "../context/store";
 
-
 const LogoutButton = () => {
-  const {setUser} = useStore();
-  const navigate = useNavigate();
+  const { setUser } = useStore();
+
   const handleLogout = async () => {
     const BE_URL = import.meta.env.VITE_BE_PORT;
     const token = document.cookie.replace(
@@ -25,18 +23,23 @@ const LogoutButton = () => {
         }
       );
       if (response.status === 200) {
-        console.log("🚀 ~ file: Logout.jsx:26 ~ handleLogout ~ response:", response)
         // clear the local storage
         localStorage.clear();
 
-        setUser({})
+        setUser({});
         
-        navigate("/signin");
+        alert("You have been logged out successfully.");
+      } else {
+        alert("An error occurred while logging out. Please try again.");
       }
     } catch (error) {
       console.error(error);
+      alert("An error occurred while logging out. Please try again.");
     }
+    // Reload the current page
+    window.location.reload();
   };
+
   return (
     <button
       onClick={handleLogout}

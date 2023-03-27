@@ -51,7 +51,7 @@ function Navigation() {
   ];
   return showNavbar ? (
     <header>
-      <nav className="bg-emerald-700 backdrop-blur-lg bg-opacity-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
+      <nav className="bg-gradient-to-r from-emerald-500 backdrop-blur-lg bg-opacity-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-emerald-800">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" className="flex items-center">
             <img
@@ -87,7 +87,7 @@ function Navigation() {
           </button>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <nav className="nav_container">
-              <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gradient-to-r from-indigo-600 md:dark:bg-gray-900 dark:border-gray-700">
                 {items.map((item) => {
                   if (item.isProtected === false) {
                     return (
