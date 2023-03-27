@@ -32,7 +32,7 @@ const ActiveTasksForActiveUser = ({ userId }) => {
   return (
     <>
     {tasks.length === 0 && (
-      <div className="text-center text-gray-500">No tasks to show</div>
+      <div className="text-center text-gray-500">You have no active Tasks</div>
     )}
     {tasks.length > 0 && (
       <div>
